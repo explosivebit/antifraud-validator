@@ -1,0 +1,47 @@
+[
+  {
+    "id": "tx-001",
+    "amount": 5000,
+    "currency": "RUB",
+    "timestamp": "2026-04-15T14:30:00Z",
+    "sender": "user-10",
+    "receiver": "user-20",
+    "country": "RU"
+  },
+  {
+    "id": "tx-002",
+    "amount": 250000,
+    "currency": "RUB",
+    "timestamp": "2026-04-15T11:00:00Z",
+    "sender": "user-30",
+    "receiver": "user-40",
+    "country": "RU"
+  },
+  {
+    "id": "tx-003",
+    "amount": 2500000,
+    "currency": "RUB",
+    "timestamp": "2026-04-15T09:15:00Z",
+    "sender": "user-50",
+    "receiver": "user-60",
+    "country": "KZ"
+  },
+  {
+    "id": "tx-004",
+    "amount": 75000,
+    "currency": "RUB",
+    "timestamp": "2026-04-15T03:45:00Z",
+    "sender": "user-70",
+    "receiver": "user-80",
+    "country": "RU"
+  },
+  {
+    "id": "tx-005",
+    "amount": 100001,
+    "currency": "RUB",
+    "timestamp": "2026-04-15T22:10:00Z",
+    "sender": "user-90",
+    "receiver": "user-100",
+    "country": "BY"
+  }
+]
