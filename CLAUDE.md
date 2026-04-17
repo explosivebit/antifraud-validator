@@ -48,10 +48,45 @@ Rules are evaluated in priority order — first match wins:
 - Each rule needs at least 2 tests: one triggers, one does not
 - Test names describe the scenario, not the implementation
 
-## Commit Messages
+## Git Workflow
+
+### Branch Naming
+
+Format: `<type>/<short-kebab-description>`
+
+| Type | When to use | Example |
+|------|-------------|---------|
+| `feat/` | New feature or rule | `feat/night-transfer-rule` |
+| `fix/` | Bug fix | `fix/boundary-off-by-one` |
+| `test/` | Adding or improving tests only | `test/edge-cases-medium-amount` |
+| `docs/` | Documentation changes only | `docs/update-architecture` |
+| `refactor/` | Code restructure, no behavior change | `refactor/extract-rule-registry` |
+
+Rules:
+- Always branch from `main`
+- Use lowercase, hyphens between words, no spaces or underscores
+- Keep branch names under 50 characters
+- One branch = one logical change (do not mix features)
+
+### Branch Protection
+
+- `main` is protected: no direct push, PR with 1 approval required
+- Force-push is forbidden on all branches
+- Branch deletion via push is forbidden on all branches
+- All changes to `main` go through Pull Requests
+
+### Commit Messages
 
 Format: `<type>: <short description>`
+
 Types: `feat` | `fix` | `test` | `docs` | `refactor`
+
+Rules:
+- Subject line: imperative mood, lowercase, max 72 characters, no period
+- Body (optional): blank line after subject, explain **why** not **what**
+- One commit = one logical change
+- Do NOT use `git commit --amend` on pushed commits
+- Do NOT use `--no-verify` to skip hooks
 
 ## Design Insights
 
