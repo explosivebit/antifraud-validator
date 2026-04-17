@@ -48,6 +48,13 @@ Rules are evaluated in priority order — first match wins:
 - Each rule needs at least 2 tests: one triggers, one does not
 - Test names describe the scenario, not the implementation
 
+## Continuous Integration
+
+- Workflow: `.github/workflows/test.yml`
+- Runs on every Pull Request and on push to `main`
+- Uses Node.js 20, runs `node validator.test.js`
+- A failing run blocks merge once the `test` status check is set as required in branch protection
+
 ## Git Workflow
 
 ### Branch Naming

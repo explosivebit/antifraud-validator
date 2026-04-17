@@ -1,0 +1,28 @@
+# Minimal CI: runs the zero-dependency test runner on every PR and on push to main.
+# No secrets, no untrusted event inputs are used — run steps contain only fixed commands.
+
+name: test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run test suite
+        run: node validator.test.js
