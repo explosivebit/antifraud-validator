@@ -19,11 +19,12 @@ All project knowledge lives in `docs/`. Read before making design decisions:
 
 ## File Map
 
-| File                | Purpose                                 |
-|---------------------|---------------------------------------- |
-| `validator.js`      | Core logic: rules and validation engine |
-| `validator.test.js` | Unit tests using `node:assert`          |
-| `transactions.json` | Sample data for manual testing          |
+| File                | Purpose                                          |
+|---------------------|--------------------------------------------------|
+| `rules.js`          | Rule functions and verdict constants             |
+| `validator.js`      | Rule registry, validation engine, and CLI        |
+| `validator.test.js` | Unit + integration tests using `node:assert`     |
+| `transactions.json` | Sample data for manual testing                   |
 | `TASK.md`           | Task specification (quick reference)    |
 
 ## Code Conventions
