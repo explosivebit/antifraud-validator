@@ -70,9 +70,10 @@ Rules:
 
 ### Branch Protection
 
-- `main` is protected: no direct push, PR with 1 approval required
-- Force-push is forbidden on all branches
-- Branch deletion via push is forbidden on all branches
+- `main` is protected: no direct push; PR with 1 approval required for non-admins
+- Repository admin may merge their own PR without a second approval — this is a solo-developer compromise; in a real team the admin bypass should be disabled
+- Force-push is forbidden on all branches (ruleset `no-force-push-all-branches`)
+- Deletion of `main` is forbidden; feature branches are deletable after merge (normal cleanup)
 - All changes to `main` go through Pull Requests
 
 ### Commit Messages
