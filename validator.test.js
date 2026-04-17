@@ -7,6 +7,7 @@ const {
   BLOCKED,
   checkHighAmount,
   checkMediumAmount,
+  checkNightTransfer,
   validateTransaction,
 } = require("./validator");
 
@@ -92,6 +93,46 @@ function testMediumAmountPassesAtBoundaryMinusOne() {
   assert.equal(result, null, "should not trigger on 99,999");
 }
 
+// ─── Tests: checkNightTransfer (stub — to be completed on lesson) ─
+
+function testNightTransferTriggersAt3AMWithLargeAmount() {
+  const result = checkNightTransfer(
+    makeTx({ amount: 75_000, timestamp: "2026-04-15T03:30:00Z" })
+  );
+  assert.notEqual(result, null, "should trigger at 03:30 with amount 75k");
+  assert.equal(result.verdict, SUSPICIOUS);
+  assert.equal(result.rule, "checkNightTransfer");
+}
+
+function testNightTransferPassesLargeAmountAtNoon() {
+  const result = checkNightTransfer(
+    makeTx({ amount: 75_000, timestamp: "2026-04-15T12:00:00Z" })
+  );
+  assert.equal(result, null, "should not trigger at noon regardless of amount");
+}
+
+function testNightTransferPassesSmallAmountAtNight() {
+  const result = checkNightTransfer(
+    makeTx({ amount: 10_000, timestamp: "2026-04-15T03:30:00Z" })
+  );
+  assert.equal(result, null, "should not trigger at night with small amount");
+}
+
+function testNightTransferBoundaryAt5_59Triggers() {
+  const result = checkNightTransfer(
+    makeTx({ amount: 75_000, timestamp: "2026-04-15T05:59:00Z" })
+  );
+  assert.notEqual(result, null, "should trigger at 05:59 (still in night window)");
+  assert.equal(result.verdict, SUSPICIOUS);
+}
+
+function testNightTransferBoundaryAt6_00Passes() {
+  const result = checkNightTransfer(
+    makeTx({ amount: 75_000, timestamp: "2026-04-15T06:00:00Z" })
+  );
+  assert.equal(result, null, "should not trigger at 06:00 (boundary, window is [0, 6))");
+}
+
 // ─── Tests: validateTransaction (engine) ─────────────────────
 
 function testEngineApprovesCleanTransaction() {
@@ -154,6 +195,13 @@ const tests = [
   ["checkMediumAmount boundary: exactly 100k passes", testMediumAmountBoundary],
   ["checkMediumAmount N+1: 100,001 triggers", testMediumAmountTriggersAtBoundaryPlusOne],
   ["checkMediumAmount N-1: 99,999 passes", testMediumAmountPassesAtBoundaryMinusOne],
+
+  // checkNightTransfer (stub — to be implemented on lesson)
+  ["checkNightTransfer triggers at 03:30 with 75k", testNightTransferTriggersAt3AMWithLargeAmount],
+  ["checkNightTransfer passes large amount at noon", testNightTransferPassesLargeAmountAtNoon],
+  ["checkNightTransfer passes small amount at night", testNightTransferPassesSmallAmountAtNight],
+  ["checkNightTransfer boundary: 05:59 triggers", testNightTransferBoundaryAt5_59Triggers],
+  ["checkNightTransfer boundary: 06:00 passes", testNightTransferBoundaryAt6_00Passes],
 
   // engine
   ["engine approves clean transaction", testEngineApprovesCleanTransaction],
