@@ -10,8 +10,8 @@ const {
   BLOCKED,
   checkHighAmount,
   checkMediumAmount,
-  validateTransaction,
-} = require("./validator");
+} = require("./rules");
+const { validateTransaction } = require("./validator");
 
 // ─── Helper ──────────────────────────────────────────────────
 
