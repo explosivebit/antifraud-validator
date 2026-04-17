@@ -6,6 +6,7 @@ const {
   BLOCKED,
   checkHighAmount,
   checkMediumAmount,
+  checkNightTransfer,
 } = require("./rules");
 
 // ─── Rule registry ───────────────────────────────────────────
@@ -13,7 +14,7 @@ const {
 const BLOCKED_RULES = [checkHighAmount];
 
 /** @type {Array<function(import("./rules").Transaction): import("./rules").RuleResult|null>} */
-const SUSPICIOUS_RULES = [checkMediumAmount];
+const SUSPICIOUS_RULES = [checkMediumAmount, checkNightTransfer];
 
 // ─── Validation engine ───────────────────────────────────────
 
@@ -50,6 +51,7 @@ module.exports = {
   BLOCKED,
   checkHighAmount,
   checkMediumAmount,
+  checkNightTransfer,
   validateTransaction,
 };
 

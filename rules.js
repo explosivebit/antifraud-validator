@@ -56,10 +56,29 @@ function checkMediumAmount(transaction) {
   return null;
 }
 
+/**
+ * Flags night-time transfers above 50,000 as suspicious.
+ * Night window: UTC hour in [0, 6). Amount threshold: > 50,000.
+ * Rationale: large transfers outside business hours are unusual.
+ *
+ * STUB: implementation is intentionally empty.
+ * Students complete it during the live lesson — see docs/session-plan.md.
+ *
+ * @param {Transaction} transaction
+ * @returns {RuleResult|null}
+ */
+function checkNightTransfer(transaction) {
+  // TODO(lesson): parse hour from transaction.timestamp (UTC),
+  //               return SUSPICIOUS if hour is in [0, 6) AND amount > 50_000.
+  void transaction;
+  return null;
+}
+
 module.exports = {
   APPROVED,
   SUSPICIOUS,
   BLOCKED,
   checkHighAmount,
   checkMediumAmount,
+  checkNightTransfer,
 };
