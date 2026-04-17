@@ -12,6 +12,7 @@
 | Session Plan | [session-plan.md](session-plan.md) | Step-by-step lesson flow and timing |
 | ADR-001 | [adr/001-javascript-over-python.md](adr/001-javascript-over-python.md) | Why JavaScript was chosen over Python |
 | ADR-002 | [adr/002-no-frameworks.md](adr/002-no-frameworks.md) | Why zero dependencies |
+| Session Summary | [session-summary.md](session-summary.md) | Full log of decisions, actions, and results |
 
 ## How to Use
 
